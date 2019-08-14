@@ -30,7 +30,7 @@ def plot_map(totCl, FileName = False, view = 'Mollweide'):
     if view == 'Mollweide':
 
         # --- Mollweide plot
-        m = hp.mollview(map, min=-300, max=300, return_projected_map = True, cmap = cmap)
+        m = hp.mollview(map, return_projected_map = True, cmap = cmap)
         
         dpi = 600
         figsize_inch = 6, 4
@@ -52,14 +52,14 @@ def plot_map(totCl, FileName = False, view = 'Mollweide'):
     
         # hp.cartview(map=None, fig=None, rot=None, zat=None, coord=None, unit='', xsize=800, ysize=None, lonra=None, latra=None, title='Cartesian view', nest=False, remove_dip=False, remove_mono=False, gal_cut=0, min=None, max=None, flip='astro', format='%.3g', cbar=True, cmap=None, badcolor='gray', bgcolor='white', norm=None, aspect=None, hold=False, sub=None, margins=None, notext=False, return_projected_map=False)
 
-        m = hp.cartview(map=map, min=-300, max=300, xsize=300, lonra=[-5,5], latra=[-5,5], title=None, return_projected_map = True)
+        m = hp.cartview(map=map, xsize=300, lonra=[-5,5], latra=[-5,5], title=None, return_projected_map = True)
         plt.close()
         
         dpi = 150
         figsize_inch = 2, 2
         fig = plt.figure(figsize=figsize_inch, dpi=dpi)
         ax = fig.add_axes([0,0,1,1])
-        ax.imshow(m, cmap = cmap)
+        ax.imshow(m, cmap = cmap, vmin = -500, vmax = 500)
         ax.axis('off')
     
         if FileName:
